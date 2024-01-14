@@ -13,5 +13,12 @@ use App\Http\Controllers\SiswaController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [SiswaController::class,'home'])->name('homepage');
+Route::get('/list', [SiswaController::class,'portfolioList'])->name('portfolio.list');
+Route::get('/crud', [SiswaController::class, 'index'])->name('siswa.index');
+Route::get('/crud/create', [SiswaController::class, 'createPage'])->name('siswa.create');
+Route::post('/crud/siswa', [SiswaController::class, 'store'])->name('siswa.store');
 
-Route::get('/', [SiswaController::class, 'index']);
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<head></head>
+<head>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+</head>
 <body>
-    <h3>ohayou skai</h3>
     <h1>Data Siswa</h1>
+    <a href="{{ route('siswa.create') }}">create</a>
+  
 <table>
     <thead>
         <tr>

