@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<head>
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-</head>
+@extends('layouts.app')
+@section('content')
 <body>
+
     <h1>Data Siswa</h1>
     <a href="{{ route('siswa.create') }}">create</a>
   
@@ -29,4 +28,32 @@
     </tbody>
 </table>
 
+<script>
+    function showAlert(message, type) {
+        const alertBox = document.createElement('div');
+        alertBox.classList.add('alert', 'fixed-top', 'mt-4', 'w-25', 'mx-auto');
+        alertBox.style.zIndex = '9999';
+        alertBox.role = 'alert';
+
+        if (type === 'danger') {
+            alertBox.classList.add('alert-danger');
+        } else if (type === 'success') {
+            alertBox.classList.add('alert-success');
+        }
+
+        alertBox.textContent = message;
+
+        document.body.appendChild(alertBox);
+
+        setTimeout(() => {
+            document.body.removeChild(alertBox);
+        }, 3000);
+    }
+
+    @if (session('success'))
+        showAlert('{{ session('success') }}', 'success');
+    @endif
+</script>
+
 </body>
+@endsection

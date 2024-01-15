@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 
 class SiswaController extends Controller
 {
+    
     public function home(){
         return view('homepage');        
     }
@@ -28,14 +29,23 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'no_telp' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
-            'tempat_lahir' => 'required|string|max:255',
+            'nama' => ['required', 'string', 'max:255'],
+            'no_telp' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'max:255'],
+            'tanggal_lahir' => ['required', 'date'],
+            'tempat_lahir' => ['required', 'string', 'max:255'],
         ]);
     
         $siswa = new Siswa();
+    
+        if (!auth()->check()) {
+            // Redirect the user to the form page with a flash message and JavaScript alert
+            session()->flash('error', 'You must be logged in to create a siswa.');
+            return redirect()->back()->with('alert', 'You must be logged in to create a siswa.');
+        }
+    
+        $siswa->user = auth()->user()->username; // save the username of the authenticated user
+    
         $siswa->nama = $request->input('nama');
         $siswa->no_telp = $request->input('no_telp');
         $siswa->alamat = $request->input('alamat');
@@ -43,6 +53,6 @@ class SiswaController extends Controller
         $siswa->tempat_lahir = $request->input('tempat_lahir');
         $siswa->save();
     
-        return redirect('/')->with('success', 'Siswa berhasil ditambahkan!');
+        return redirect('/crud')->with('success', 'Siswa berhasil ditambahkan!');
     }
 }

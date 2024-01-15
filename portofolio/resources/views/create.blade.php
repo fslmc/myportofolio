@@ -3,6 +3,10 @@
 @section('content')
     <h1>Create New Siswa</h1>
 
+    @if (session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
     <a href="{{ route('siswa.index') }}" class="btn btn-secondary mb-3">Back</a>
 
     <form action="{{ route('siswa.store') }}" method="POST">
@@ -29,4 +33,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
 @endsection
