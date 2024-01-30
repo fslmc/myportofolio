@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="view" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,10 +13,11 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/bootsrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('/build/assets/app-041e359a.css') }}">
+    <script src="{{ asset('/build/assets/app-5695d568.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -48,6 +49,7 @@
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                
                                 </li>
                             @endif
                         @else
@@ -78,6 +80,5 @@
             @yield('content')
         </main>
     </div>
-    
 </body>
 </html>
